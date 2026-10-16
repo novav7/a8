@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+            max-width: calc(100% - 50px);
+            margin: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 420px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0 20px;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Practical no 10</h1>
+        <p>Combine NumPy arrays and Pandas DataFrames.</p>
+        <ul>
+            <li>Perform sorting, filtering, and basic statistical operations on a dataset.</li>
+        </ul>
+
+        <h2>Python Code</h2>
+        <textarea id="code1" spellcheck="false">import numpy as np
+import pandas as pd
+
+# Step 1: Create a NumPy array
+marks = np.array([85, 72, 90, 65, 78])
+
+# Step 2: Create a Pandas DataFrame
+data = {
+    "Name": ["Amit", "Rahul", "Priya", "Neha", "Sneha"],
+    "Age": [20, 21, 19, 22, 20],
+    "Marks": marks
+}
+
+df = pd.DataFrame(data)
+
+print("Original Dataset:")
+print(df)
+
+# Step 3: Sorting
+print("\nDataset sorted by Marks:")
+print(df.sort_values(by="Marks"))
+
+# Step 4: Filtering
+print("\nStudents with Marks greater than 75:")
+print(df[df["Marks"] > 75])
+
+# Step 5: Basic statistical operations
+print("\nStatistical Information:")
+print("Mean Marks:", df["Marks"].mean())
+print("Median Marks:", df["Marks"].median())
+print("Maximum Marks:", df["Marks"].max())
+print("Minimum Marks:", df["Marks"].min())
+print("Standard Deviation:", df["Marks"].std())
+
+# Step 6: Describe the dataset
+print("\nStatistical Summary:")
+print(df.describe())</textarea>
+        <button class="copy-btn" onclick="copyCode('code1', this)">📋 Copy</button>
+
+        <br>
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+
+    <script>
+        function copyCode(id, button) {
+            const textarea = document.getElementById(id);
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                button.innerText = "✅ Copied!";
+                setTimeout(() => {
+                    button.innerText = "📋 Copy";
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

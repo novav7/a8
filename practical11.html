@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      <h2>MODULE 2</h2>
+      <h2>Practical 1 : Introduction to NumPy Arrays</h2>
+
+      <p>NumPy (Numerical Python) is a Python library used for working with arrays and performing mathematical operations efficiently.</p>
+
+      <h3>Main Uses of NumPy Arrays</h3>
+      <p>1. Store numerical data (integers, floats, etc.).</p>
+      <p>2. Perform mathematical operations such as addition, subtraction, multiplication, and division.</p>
+      <p>3. Matrix operations like matrix addition, multiplication, and transpose.</p>
+      <p>4. Statistical calculations such as mean, median, standard deviation, maximum, and minimum.</p>
+      <p>5. Data analysis and machine learning applications.</p>
+      <p>6. Scientific and engineering calculations.</p>
+      <p>7. Easy indexing and slicing of data.</p>
+      <p>8. Multi-dimensional arrays (1D, 2D, 3D, etc.).</p>
+
+      <h3>How to install numpy</h3>
+      <p>1) win+R</p>
+      <p>2)cmd</p>
+      <p>3) type py –m pip install numpy</p>
+
+      <h3>• Write a Python program to import NumPy library.</h3>
+<textarea id="code1" rows="10" cols="80">
+import numpy as np
+
+# Create a one-dimensional array
+arr_1d = np.array([10, 20, 30, 40, 50])
+
+print("1-D Array:", arr_1d)
+print("Shape:", arr_1d.shape)
+print("Dimensions:", arr_1d.ndim)
+print("Data Type:", arr_1d.dtype)
+</textarea>
+<button onclick="copyCode('code1', this)">Copy</button>
+
+<br><br>
+      <h3>Create two-dimensional NumPy arrays.</h3>
+<textarea id="code2" rows="12" cols="80">
+import numpy as np
+
+# Create a two-dimensional array
+
+arr_2d = np.array([[1, 2, 3],
+
+           [4, 5, 6],
+
+           [7, 8, 9]])
+
+print("2-D Array:")
+
+print(arr_2d)
+
+print("Shape:", arr_2d.shape)
+
+print("Dimensions:", arr_2d.ndim)
+
+print("Total Elements:", arr_2d.size)
+</textarea>
+<button onclick="copyCode('code2', this)">Copy</button>
+
+<script>
+function copyCode(id, btn) {
+  let text = document.getElementById(id).value;
+
+  navigator.clipboard.writeText(text);
+
+  btn.innerText = "✅ Copied!";
+
+  setTimeout(() => {
+    btn.innerText = "📋 Copy";
+  }, 2000);
+}
+</script>
+     <br><br>
+          <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>

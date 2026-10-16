@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      <h2>Practical 10 : Date, Time and Calendar Module</h2>
+
+      <h2>• 10.1 Print current date in different formats.</h2>
+<textarea id="code1" rows="10" cols="80">
+from datetime import datetime
+
+now = datetime.now()
+
+print("Current Date:", now)
+
+print("DD-MM-YYYY :", now.strftime("%d-%m-%Y"))
+
+print("MM/DD/YYYY :", now.strftime("%m/%d/%Y"))
+
+print("Day Month Year :", now.strftime("%d %B %Y"))
+
+print("Day Name :", now.strftime("%A"))
+</textarea>
+<button onclick="copyCode('code1', this)">Copy</button>
+
+<br><br>
+      <h2>• 10 .2Convert timestamp to datestamp.</h2>
+<textarea id="code2" rows="10" cols="80">
+import time
+
+timestamp = time.time()
+
+print("Timestamp:", timestamp)
+
+date = time.ctime(timestamp)
+
+print("Datestamp:", date)
+</textarea>
+<button onclick="copyCode('code2', this)">Copy</button>
+
+<br><br>
+      <h2>• 10.3 Compare two dates.</h2>
+<textarea id="code3" rows="14" cols="80">
+from datetime import datetime
+
+date1 = input("Enter First Date (DD-MM-YYYY): ")
+
+date2 = input("Enter Second Date (DD-MM-YYYY): ")
+
+d1 = datetime.strptime(date1, "%d-%m-%Y")
+
+d2 = datetime.strptime(date2, "%d-%m-%Y")
+
+if d1 > d2:
+
+  print("First date is later.")
+
+elif d1 < d2:
+
+  print("Second date is later.")
+
+else:
+
+  print("Both dates are equal.")
+</textarea>
+<button onclick="copyCode('code3', this)">Copy</button>
+
+<br><br>
+      <h2>•10.4 Display monthly/yearly calendar using calendar module.</h2>
+<textarea id="code4" rows="10" cols="80">
+import calendar
+
+year = int(input("Enter Year: "))
+
+month = int(input("Enter Month (1-12): "))
+
+print("\nMonthly Calendar\n")
+
+print(calendar.month(year, month))
+
+print("\nYearly Calendar\n")
+
+print(calendar.calendar(year))
+</textarea>
+<button onclick="copyCode('code4', this)">Copy</button>
+
+<script>
+function copyCode(id, btn) {
+  let text = document.getElementById(id).value;
+
+  navigator.clipboard.writeText(text);
+
+  btn.innerText = "✅ Copied!";
+
+  setTimeout(() => {
+    btn.innerText = "📋 Copy";
+  }, 2000);
+}
+</script>
+     <br><br>
+          <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>

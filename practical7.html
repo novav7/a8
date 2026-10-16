@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 700px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      <h2>Practical 7 : Sorting and Tuple Properties</h2>
+      <h3>Aim: To sort nested tuples using the sorted() function, and to verify the immutability property of tuples.</h3>
+
+      <h3>Program 7.1 — Sorting nested tuples using sorted()</h3>
+<textarea id="code1" rows="12" cols="80">
+students = [("Aarav", 78),("Diya", 88),("Rohan", 65), ("Isha", 91)]
+# Sort by marks (ascending) using a lambda key
+sorted_by_marks_asc = sorted(students, key=lambda item: item[1])
+print("Sorted by marks (ascending) :", sorted_by_marks_asc)
+# Sort by marks (descending)
+sorted_by_marks_desc = sorted(students, key=lambda item: item[1], reverse=True)
+print("Sorted by marks (descending):", sorted_by_marks_desc)
+# Sort by name (alphabetically)
+sorted_by_name = sorted(students, key=lambda item: item[0])
+print("Sorted by name            :", sorted_by_name)
+</textarea>
+<button onclick="copyCode('code1', this)">Copy</button>
+
+<br><br>
+      <h3>Program 7.2 — Verifying the immutability property of tuples</h3>
+<textarea id="code2" rows="16" cols="80">
+my_tuple = (10, 20, 30)
+print("Original tuple:", my_tuple)
+try:
+  my_tuple[0] = 99         # attempting to modify a tuple element
+except TypeError as e:
+  print("Error:", e)
+  print("This confirms that tuples are IMMUTABLE -- their elements cannot be changed after creation.")
+# NOTE: a tuple containing a mutable object (like a list) still cannot have
+# its own slots reassigned, but the *contents* of that mutable object can change.
+nested = (1, 2, [3, 4])
+nested[2].append(5)
+print("\nTuple with a mutable list inside, after modifying the list:", nested)
+print("The tuple's own elements (slots) are unchanged; only the inner list's contents changed.")
+</textarea>
+<button onclick="copyCode('code2', this)">Copy</button>
+
+<script>
+function copyCode(id, btn) {
+  let text = document.getElementById(id).value;
+
+  navigator.clipboard.writeText(text);
+
+  btn.innerText = "✅ Copied!";
+
+  setTimeout(() => {
+    btn.innerText = "📋 Copy";
+  }, 2000);
+}
+</script>
+     <br><br>
+          <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+
+</body>
+</html>
