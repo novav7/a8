@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Practical 3 - Abstraction and Interfaces</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px;color:#222}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:850px;max-width:calc(100% - 50px);margin:0 auto 22px}
+h1,h2{margin-top:0} .text{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;min-height:220px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+.output{background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:6px;white-space:pre-wrap;font-family:Consolas,monospace}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head><body><div class="container"><h1>Practical 3: Abstraction and Interfaces</h1><p>Content transcribed from the uploaded Java document.</p><div class="text">3. Abstraction and Interfaces: To implement abstraction using abstract classes and interfaces.
+a) Create an abstract class Shape with abstract method area().
+b) Implement subclasses Circle and Rectangle.
+c) Create an interface Printable and implement it in a class.
+d) Demonstrate multiple inheritance using interfaces.
+3.a) Create an abstract class Shape with abstract method area().
+Aim:
+To create an abstract class Shape with an abstract method area() and implement it in a subclass.
+Concept:
+An abstract class is a class that cannot be instantiated (object cannot be created).
+It is declared using the abstract keyword.
+An abstract method has no body and must be implemented by the subclass.
+Abstract classes are used to achieve abstraction in Java.</div></div><div class="container"><h2>Program 1</h2><textarea id="code3_1" readonly>abstract class Shape {
+    abstract void area();   // Abstract method
+}
+class Rectangle extends Shape {
+    int length = 10;
+    int width = 5;
+    void area() {
+        System.out.println(&quot;Area = &quot; + (length * width));
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Rectangle r = new Rectangle();
+        r.area();
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code3_1',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Area = 50
+3.b) Implement subclasses Circle and Rectangle.
+Aim
+To implement Circle and Rectangle subclasses from an abstract class Shape and calculate their areas.
+Concept:
+Shape is an abstract class.
+area() is an abstract method.
+Circle and Rectangle inherit the Shape class and provide their own implementation of the area() method.
+This demonstrates abstraction and method overriding.</div></div><div class="container"><h2>Program 2</h2><textarea id="code3_2" readonly>abstract class Shape {
+    abstract void area();
+}
+class Circle extends Shape {
+    double radius = 5;
+    void area() {
+        System.out.println(&quot;Area of Circle = &quot; + (3.14 * radius * radius));
+    }
+}
+class Rectangle extends Shape {
+    int length = 10;
+    int width = 5;
+    void area() {
+        System.out.println(&quot;Area of Rectangle = &quot; + (length * width));
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Shape c = new Circle();
+        Shape r = new Rectangle();
+        c.area();
+        r.area();
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code3_2',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Area of Circle = 78.5
+Area of Rectangle = 50
+3.c) Create an interface Printable and implement it in a class.
+Aim:
+To create an interface Printable and implement it in a class to demonstrate the use of interfaces in Java.
+Concept:
+An interface is a blueprint of a class that contains abstract methods.
+It is declared using the interface keyword.
+A class implements an interface using the implements keyword.
+The class must provide the implementation of all methods declared in the interface.
+Interfaces are used to achieve 100% abstraction in Java.</div></div><div class="container"><h2>Program 3</h2><textarea id="code3_3" readonly>// Interface
+interface Printable {
+    void print();   // Abstract method
+}
+// Class implementing the interface
+class Document implements Printable {
+    public void print() {
+        System.out.println(&quot;Printing the document...&quot;);
+    }
+}
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Document d = new Document();
+        d.print();
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code3_3',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Printing the document...
+3.d) Demonstrate multiple inheritance using interfaces.
+Aim:
+To demonstrate multiple inheritance in Java using interfaces.
+Concept:
+Java does not support multiple inheritance with classes because it can cause ambiguity (Diamond Problem).
+Java supports multiple inheritance using interfaces.
+A class can implement more than one interface using the implements keyword.
+The class must provide the implementation of all methods from the interfaces.</div></div><div class="container"><h2>Program 4</h2><textarea id="code3_4" readonly>// First Interface
+interface Animal {
+    void sound();
+}
+// Second Interface
+interface Bird {
+    void fly();
+}
+// Class implementing both interfaces
+class Bat implements Animal, Bird {
+    public void sound() {
+        System.out.println(&quot;Bat makes sound.&quot;);
+    }
+    public void fly() {
+        System.out.println(&quot;Bat can fly.&quot;);
+    }
+}
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Bat b = new Bat();
+        b.sound();
+        b.fly();
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code3_4',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Bat makes sound.
+Bat can fly.</div></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div><script>
+function copyCode(id, button) {
+ navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+  button.textContent = "✅ Copied!";
+  setTimeout(() => button.textContent = "📋 Copy", 2000);
+ });
+}
+</script></body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Practical 6 - Java Collections Framework – List &amp; Set</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px;color:#222}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:850px;max-width:calc(100% - 50px);margin:0 auto 22px}
+h1,h2{margin-top:0} .text{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;min-height:220px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+.output{background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:6px;white-space:pre-wrap;font-family:Consolas,monospace}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head><body><div class="container"><h1>Practical 6: Java Collections Framework – List &amp; Set</h1><p>Content transcribed from the uploaded Java document.</p><div class="text">6. Java Collections Framework – List &amp; Set: To use Collection classes for storing and processing data.
+a) Use ArrayList to store student objects.
+b) Perform add, remove, search operations.
+c) Use HashSet to store unique elements.
+d) Iterate collections using Iterator and for-each loop.
+6. a) Use ArrayList to store student objects.
+Aim:
+To create and use an ArrayList in Java to store and display student objects.
+Concept:
+ArrayList is a class in the Java Collections Framework that provides a dynamic array. Unlike normal arrays, an ArrayList can grow or shrink in size automatically.
+It is used to store multiple objects and provides methods such as add(), get(), remove(), and size().
+When storing user-defined objects (such as Student objects), the ArrayList stores references to those objects.</div></div><div class="container"><h2>Program 1</h2><textarea id="code6_1" readonly>import java.util.ArrayList;
+class Student {
+    int rollNo;
+    String name;
+    Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+    void display() {
+        System.out.println(&quot;Roll No: &quot; + rollNo);
+        System.out.println(&quot;Name: &quot; + name);
+        System.out.println();
+    }
+}
+public class StudentArrayList {
+    public static void main(String[] args) {
+        ArrayList&lt;Student&gt; students = new ArrayList&lt;Student&gt;();
+        students.add(new Student(101, &quot;Rahul&quot;));
+        students.add(new Student(102, &quot;Priya&quot;));
+        students.add(new Student(103, &quot;Amit&quot;));
+        System.out.println(&quot;Student Details:&quot;);
+        for (Student s : students) {
+            s.display();
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code6_1',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Student Details:
+Roll No: 101
+Name: Rahul
+Roll No: 102
+Name: Priya
+Roll No: 103
+Name: Amit
+6. b) Perform add, remove, search operations.
+Aim:
+To perform add, remove, and search operations using ArrayList in Java.
+Concept:
+ArrayList is a dynamic collection in Java that stores elements in a resizable array. It provides built-in methods to add, remove, and search elements easily.
+Methods Used:
+add() → Adds an element.
+remove() → Removes an element.
+contains() → Searches for an element.</div></div><div class="container"><h2>Program 2</h2><textarea id="code6_2" readonly>import java.util.ArrayList;
+public class ArrayListOperations {
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; students = new ArrayList&lt;String&gt;();
+        // Add elements
+        students.add(&quot;Rahul&quot;);
+        students.add(&quot;Priya&quot;);
+        students.add(&quot;Amit&quot;);
+        System.out.println(&quot;Students after adding:&quot;);
+        System.out.println(students);
+        // Remove an element
+        students.remove(&quot;Priya&quot;);
+        System.out.println(&quot;Students after removing Priya:&quot;);
+        System.out.println(students);
+        // Search an element
+        if (students.contains(&quot;Amit&quot;)) {
+            System.out.println(&quot;Amit is found.&quot;);
+        } else {
+            System.out.println(&quot;Amit is not found.&quot;);
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code6_2',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Students after adding:
+[Rahul, Priya, Amit]
+Students after removing Priya:
+[Rahul, Amit]
+Amit is found.
+6.c) Use HashSet to store unique elements.
+Aim:
+To create and use a HashSet in Java to store unique elements.
+Concept:
+HashSet is a class in the Java Collections Framework that stores only unique elements. It does not allow duplicate values. If a duplicate element is added, it is ignored automatically.
+Features of HashSet:
+Stores only unique elements.
+Does not maintain insertion order.
+Allows null value (only one).</div></div><div class="container"><h2>Program 3</h2><textarea id="code6_3" readonly>import java.util.HashSet;
+public class HashSetDemo {
+    public static void main(String[] args) {
+        HashSet&lt;String&gt; names = new HashSet&lt;String&gt;();
+        // Add elements
+        names.add(&quot;Rahul&quot;);
+        names.add(&quot;Priya&quot;);
+        names.add(&quot;Amit&quot;);
+        names.add(&quot;Rahul&quot;);   // Duplicate element
+        System.out.println(&quot;Unique Elements:&quot;);
+        System.out.println(names);
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code6_3',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Unique Elements:
+[Rahul, Priya, Amit]
+6.d) Iterate collections using Iterator and for-each loop.
+Aim:To iterate through a collection using Iterator and for-each loop in Java.
+Concept:
+Collections in Java can be traversed using different methods.
+Iterator: Used to access collection elements one by one using hasNext() and next().
+For-Each Loop: A simple and easy way to iterate through all elements in a collection.</div></div><div class="container"><h2>Program 4</h2><textarea id="code6_4" readonly>import java.util.ArrayList;
+import java.util.Iterator;
+public class IteratorDemo {
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; names = new ArrayList&lt;String&gt;();
+        names.add(&quot;Rahul&quot;);
+        names.add(&quot;Priya&quot;);
+        names.add(&quot;Amit&quot;);
+        // Using Iterator
+        System.out.println(&quot;Using Iterator:&quot;);
+        Iterator&lt;String&gt; it = names.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        // Using For-Each Loop
+        System.out.println(&quot;\nUsing For-Each Loop:&quot;);
+        for (String name : names) {
+            System.out.println(name);
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code6_4',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Using Iterator:
+Rahul
+Priya
+Amit
+Using For-Each Loop:
+Rahul
+Priya
+Amit</div></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div><script>
+function copyCode(id, button) {
+ navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+  button.textContent = "✅ Copied!";
+  setTimeout(() => button.textContent = "📋 Copy", 2000);
+ });
+}
+</script></body></html>

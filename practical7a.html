@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Practical 7 - Java Collections Framework – Map &amp; Sorting</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px;color:#222}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:850px;max-width:calc(100% - 50px);margin:0 auto 22px}
+h1,h2{margin-top:0} .text{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;min-height:220px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+.output{background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:6px;white-space:pre-wrap;font-family:Consolas,monospace}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head><body><div class="container"><h1>Practical 7: Java Collections Framework – Map &amp; Sorting</h1><p>Content transcribed from the uploaded Java document.</p><div class="text">7. Java Collections Framework – Map &amp; Sorting: To demonstrate Map interface and sorting techniques.
+a) Use HashMap to store key-value pairs.
+b) Traverse map using entrySet().
+c) Sort objects using Comparable interface.
+d) Sort objects using Comparator interface.
+7.a) Use HashMap to store key-value pairs.
+Aim:
+To create and use a HashMap in Java to store key-value pairs.
+Concept:
+HashMap is a class in the Java Collections Framework that stores data in key-value pairs. Each key is unique and is associated with a value. If the same key is added again, the old value is replaced with the new value.
+Features of HashMap:
+Stores data as key-value pairs.
+Keys are unique.
+Values can be duplicated.
+Does not maintain insertion order.</div></div><div class="container"><h2>Program 1</h2><textarea id="code7_1" readonly>import java.util.HashMap;
+public class HashMapDemo {
+    public static void main(String[] args) {
+        HashMap&lt;Integer, String&gt; students = new HashMap&lt;Integer, String&gt;();
+        // Add key-value pairs
+        students.put(101, &quot;Rahul&quot;);
+        students.put(102, &quot;Priya&quot;);
+        students.put(103, &quot;Amit&quot;);
+        // Display HashMap
+        System.out.println(&quot;Student Details:&quot;);
+        System.out.println(students);
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code7_1',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Student Details:
+{101=Rahul, 102=Priya, 103=Amit}
+7.b) Traverse map using entrySet().
+Aim:
+To write a simple Java program to traverse a HashMap using the entrySet() method and display its key-value pairs.
+Concept:
+A HashMap is a collection that stores data as key-value pairs.
+The entrySet() method returns a set containing all the entries (key-value pairs) in the map.
+Each entry is represented by the Map.Entry interface.
+The getKey() method retrieves the key, and the getValue() method retrieves the corresponding value.
+Using entrySet() is an efficient way to access both keys and values at the same time.</div></div><div class="container"><h2>Program 2</h2><textarea id="code7_2" readonly>import java.util.HashMap;
+import java.util.Map;
+public class MapEntrySetExample {
+    public static void main(String[] args) {
+        // Create a HashMap
+        HashMap&lt;Integer, String&gt; student = new HashMap&lt;&gt;();
+        // Add elements
+        student.put(101, &quot;Anil&quot;);
+        student.put(102, &quot;Bala&quot;);
+        student.put(103, &quot;Charan&quot;);
+        // Traverse the map using entrySet()
+        System.out.println(&quot;Student Details:&quot;);
+        for (Map.Entry&lt;Integer, String&gt; entry : student.entrySet()) {
+            System.out.println(&quot;ID: &quot; + entry.getKey() +
+                               &quot;  Name: &quot; + entry.getValue());
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code7_2',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Student Details:
+ID: 101  Name: Anil
+ID: 102  Name: Bala
+ID: 103  Name: Charan
+7.C) Sort objects using Comparable interface
+Aim:
+To write a Java program to sort objects using the Comparable interface.
+Concept:
+The Comparable interface is used to sort objects in their natural order.
+It contains the method compareTo().
+A class implements Comparable and overrides the compareTo() method to define the sorting order.
+The Collections.sort() method calls compareTo() automatically to sort the objects.</div></div><div class="container"><h2>Program 3</h2><textarea id="code7_3" readonly>import java.util.*;
+class Student implements Comparable&lt;Student&gt; {
+    int id;
+    String name;
+    // Constructor
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    // Compare students by ID
+    public int compareTo(Student s) {
+        return this.id - s.id;
+    }
+}
+public class ComparableDemo {
+    public static void main(String[] args) {
+        ArrayList&lt;Student&gt; students = new ArrayList&lt;&gt;();
+        students.add(new Student(103, &quot;Ravi&quot;));
+        students.add(new Student(101, &quot;Anil&quot;));
+        students.add(new Student(102, &quot;Priya&quot;));
+        // Sort the objects
+        Collections.sort(students);
+        // Display sorted list
+        System.out.println(&quot;Students after sorting:&quot;);
+        for (Student s : students) {
+            System.out.println(s.id + &quot; &quot; + s.name);
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code7_3',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Students after sorting:
+101 Anil
+102 Priya
+103 Ravi
+7.d)  Sort objects using Comparator interface.
+Aim
+To write a simple Java program to sort objects using the Comparator interface.
+Concept:
+The Comparator interface is used to define a custom sorting order.
+It contains the compare() method.
+Unlike Comparable, the Comparator is implemented in a separate class.
+Collections.sort() uses the Comparator object to sort the list.</div></div><div class="container"><h2>Program 4</h2><textarea id="code7_4" readonly>import java.util.*;
+// Student class
+class Student {
+    int id;
+    String name;
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+// Comparator class to sort by Name
+class NameComparator implements Comparator&lt;Student&gt; {
+    public int compare(Student s1, Student s2) {
+        return s1.name.compareTo(s2.name);
+    }
+}
+public class ComparatorExample {
+    public static void main(String[] args) {
+        ArrayList&lt;Student&gt; list = new ArrayList&lt;&gt;();
+        list.add(new Student(103, &quot;Ravi&quot;));
+        list.add(new Student(101, &quot;Anil&quot;));
+        list.add(new Student(102, &quot;Priya&quot;));
+        // Sort by name
+        Collections.sort(list, new NameComparator());
+        System.out.println(&quot;Students sorted by Name:&quot;);
+        for (Student s : list) {
+            System.out.println(s.id + &quot; &quot; + s.name);
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code7_4',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Students sorted by Name:
+101 Anil
+102 Priya
+103 Ravi</div></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div><script>
+function copyCode(id, button) {
+ navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+  button.textContent = "✅ Copied!";
+  setTimeout(() => button.textContent = "📋 Copy", 2000);
+ });
+}
+</script></body></html>

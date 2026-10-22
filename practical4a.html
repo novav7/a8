@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Practical 4 - Exception Handling</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px;color:#222}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:850px;max-width:calc(100% - 50px);margin:0 auto 22px}
+h1,h2{margin-top:0} .text{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;min-height:220px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+.output{background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:6px;white-space:pre-wrap;font-family:Consolas,monospace}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head><body><div class="container"><h1>Practical 4: Exception Handling</h1><p>Content transcribed from the uploaded Java document.</p><div class="text">4. Exception Handling: To demonstrate exception handling mechanisms in Java.
+a) Write a program using try-catch-finally.
+b) Handle built-in exceptions (ArithmeticException,
+NullPointerException).
+c) Implement multiple catch blocks.
+d) Create and use a user-defined exception.
+4. a) Write a program using try-catch-finally.
+Aim:
+To write a Java program using try-catch-finally for exception handling.
+Concept:
+Exception Handling is used to handle runtime errors and prevent the program from crashing.
+try block contains code that may generate an exception.
+catch block handles the exception.
+finally block always executes, whether an exception occurs or not. It is commonly used to release resources or print cleanup messages.</div></div><div class="container"><h2>Program 1</h2><textarea id="code4_1" readonly>public class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+            int c = a / b;   // Exception occurs
+            System.out.println(&quot;Result = &quot; + c);
+        }
+        catch (ArithmeticException e) {
+            System.out.println(&quot;Cannot divide by zero.&quot;);
+        }
+        finally {
+            System.out.println(&quot;Finally block executed.&quot;);
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code4_1',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Cannot divide by zero.
+Finally block executed.
+4.b) Handle built-in exceptions (ArithmeticException,
+NullPointerException).
+Aim:
+To write a Java program that handles the built-in exceptions ArithmeticException and NullPointerException using try-catch.
+Concept:
+Built-in Exceptions are predefined exception classes provided by Java.
+ArithmeticException occurs when an illegal arithmetic operation is performed, such as dividing by zero.
+NullPointerException occurs when a program tries to use an object reference that is null.
+The try-catch block is used to handle these exceptions and prevent the program from crashing.</div></div><div class="container"><h2>Program 2</h2><textarea id="code4_2" readonly>public class Main {
+    public static void main(String[] args) {
+        // Handling ArithmeticException
+        try {
+            int a = 10;
+            int b = 0;
+            int c = a / b;
+            System.out.println(c);
+        }
+        catch (ArithmeticException e) {
+            System.out.println(&quot;Arithmetic Exception: Cannot divide by zero.&quot;);
+        }
+        // Handling NullPointerException
+        try {
+            String str = null;
+            System.out.println(str.length());
+        }
+        catch (NullPointerException e) {
+             System.out.println(&quot;Null Pointer Exception: String is null.&quot;);
+        }
+    System.out.println(&quot;Program executed successfully.&quot;);
+    }
+}
+Output:
+Arithmetic Exception: Cannot divide by zero.
+Null Pointer Exception: String is null.
+Program executed successfully.
+4.c) Implement multiple catch blocks.
+Aim:
+To write a Java program using multiple catch blocks to handle different types of exceptions.
+Concept:
+A multiple catch block is used when a program can throw different types of exceptions.
+One try block can be followed by more than one catch block.
+Each catch block handles a specific exception.
+Java checks the catch blocks from top to bottom and executes the one that matches the exception.</textarea><button class="copy-btn" onclick="copyCode('code4_2',this)">📋 Copy</button></div><div class="container"><h2>Program 3</h2><textarea id="code4_3" readonly>public class Main {
+    public static void main(String[] args) {
+        try {
+            int arr[] = {10, 20, 30};
+            int a = 10 / 0;          // ArithmeticException
+            System.out.println(arr[5]); // ArrayIndexOutOfBoundsException
+        }
+        catch (ArithmeticException e) {
+            System.out.println(&quot;Arithmetic Exception: Cannot divide by zero.&quot;);
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(&quot;Array Index Out Of Bounds Exception.&quot;);
+        }
+        catch (Exception e) {
+            System.out.println(&quot;General Exception.&quot;);
+        }
+        System.out.println(&quot;Program executed successfully.&quot;);
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code4_3',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Arithmetic Exception: Cannot divide by zero.
+Program executed successfully.
+4.d) Create and use a user-defined exception.
+Aim:
+To create and use a user-defined exception in Java.
+Concept:
+Java allows programmers to create their own exceptions called user-defined (custom) exceptions.
+A user-defined exception is created by extending the Exception class.
+It is thrown using the throw keyword.
+It is handled using the try-catch block.
+Custom exceptions are useful for handling application-specific errors.</div></div><div class="container"><h2>Program 4</h2><textarea id="code4_4" readonly>// User-defined exception class
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String message) {
+        super(message);
+    }
+}
+public class Main {
+    static void checkAge(int age) throws InvalidAgeException {
+        if (age &lt; 18) {
+            throw new InvalidAgeException(&quot;Age must be 18 or above.&quot;);
+        }
+        else {
+            System.out.println(&quot;You are eligible to vote.&quot;);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            checkAge(16);
+        }
+        catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code4_4',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Age must be 18 or above.</div></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div><script>
+function copyCode(id, button) {
+ navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+  button.textContent = "✅ Copied!";
+  setTimeout(() => button.textContent = "📋 Copy", 2000);
+ });
+}
+</script></body></html>

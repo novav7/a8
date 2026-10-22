@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Practical 5 - Multithreading</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:40px;color:#222}
+.container{background:white;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.15);width:850px;max-width:calc(100% - 50px);margin:0 auto 22px}
+h1,h2{margin-top:0} .text{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;min-height:220px;box-sizing:border-box;padding:12px;font-family:Consolas,monospace;font-size:14px;border:1px solid #ccc;border-radius:6px;resize:vertical;white-space:pre}
+.copy-btn,.back-btn{background:#1677ff;color:white;border:0;padding:10px 16px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:10px}
+.copy-btn:hover,.back-btn:hover{background:#075ac5}
+.output{background:#f7f7f7;border:1px solid #ddd;padding:12px;border-radius:6px;white-space:pre-wrap;font-family:Consolas,monospace}
+@media(max-width:600px){body{margin:12px}.container{width:auto;max-width:none;padding:16px}}
+</style>
+</head><body><div class="container"><h1>Practical 5: Multithreading</h1><p>Content transcribed from the uploaded Java document.</p><div class="text">5. Multithreading: To implement multithreading concepts in Java.
+a) Create a thread using Thread class.
+b) Create a thread using Runnable interface.
+c) Demonstrate thread lifecycle.
+d) Implement synchronization using synchronized keyword.
+5. a) Create a thread using Thread class.
+Aim:
+To create a thread in Java by extending the Thread class.
+Concept:
+A thread is a lightweight process that allows a program to perform multiple tasks simultaneously.
+Java provides the Thread class to create threads.
+To create a thread:
+Extend the Thread class.
+Override the run() method.
+Create an object of the class.
+Call the start() method to begin execution.
+Note: Do not call run() directly. Always use start() to create a new thread.</div></div><div class="container"><h2>Program 1</h2><textarea id="code5_1" readonly>// Class extending Thread
+class MyThread extends Thread {
+    public void run() {
+        System.out.println(&quot;Thread is running...&quot;);
+    }
+}
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        MyThread t = new MyThread(); // Create thread object
+        t.start();                   // Start the thread
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code5_1',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Thread is running...
+5.b) Create a thread using Runnable interface.
+Aim:
+To create a thread in Java using the Runnable interface.
+Concept:
+The Runnable interface is another way to create a thread in Java.
+It contains one abstract method: run().
+To create a thread using Runnable:
+Implement the Runnable interface.
+Override the run() method.
+Create an object of the class.
+Pass the object to the Thread class.
+Call the start() method.
+Note: Using Runnable is preferred because the class can still extend another class (Java supports single inheritance).</div></div><div class="container"><h2>Program 2</h2><textarea id="code5_2" readonly>// Class implementing Runnable interface
+class MyThread implements Runnable {
+    public void run() {
+        System.out.println(&quot;Thread is running...&quot;);
+    }
+}
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        MyThread obj = new MyThread();   // Create Runnable object
+        Thread t = new Thread(obj);      // Create Thread object
+        t.start();                       // Start the thread
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code5_2',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Thread is running...
+5.c) Demonstrate thread lifecycle.
+Aim:
+To demonstrate the thread lifecycle in Java.
+Concept:
+A thread lifecycle describes the different states through which a thread passes from its creation until it terminates.
+The main states of a thread are:
+Thread Lifecycle Diagram
+|
+|</div></div><div class="container"><h2>Program 3</h2><textarea id="code5_3" readonly>class MyThread extends Thread {
+    public void run() {
+        try {
+            System.out.println(&quot;Thread is Running&quot;);
+            Thread.sleep(2000);   // Thread sleeps for 2 seconds
+            System.out.println(&quot;Thread Resumed&quot;);
+        }
+        catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        System.out.println(&quot;Thread Ended&quot;);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        System.out.println(&quot;Thread State: &quot; + t.getState());
+        t.start();
+        System.out.println(&quot;Thread Started&quot;);
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code5_3',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">Thread State: NEW
+Thread Started
+Thread is Running
+Thread Resumed
+Thread Ended
+d) Implement synchronization using synchronized keyword.
+Aim:
+To implement thread synchronization in Java using the synchronized keyword.
+Concept:
+Synchronization is used to control access to a shared resource by multiple threads.
+It ensures that only one thread can execute a synchronized method or block at a time.
+The synchronized keyword prevents data inconsistency and avoids race conditions.</div></div><div class="container"><h2>Program 4</h2><textarea id="code5_4" readonly>class Table {
+    synchronized void printTable(int n) {
+        for (int i = 1; i &lt;= 5; i++) {
+            System.out.println(n * i);
+        }
+    }
+}
+class MyThread1 extends Thread {
+    Table t;
+    MyThread1(Table t) {
+        this.t = t;
+    }
+    public void run() {
+        t.printTable(5);
+    }
+}
+class MyThread2 extends Thread {
+    Table t;
+    MyThread2(Table t) {
+        this.t = t;
+    }
+    public void run() {
+        t.printTable(10);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Table obj = new Table();
+        MyThread1 t1 = new MyThread1(obj);
+        MyThread2 t2 = new MyThread2(obj);
+        t1.start();
+        t2.start();
+    }
+}</textarea><button class="copy-btn" onclick="copyCode('code5_4',this)">📋 Copy</button><h3>Output (from source)</h3><div class="output">5
+10
+15
+20
+25
+10
+20
+30
+40
+50</div></div><div class="container"><a href="index.html" class="back-btn">⬅ Back to Home</a></div><script>
+function copyCode(id, button) {
+ navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
+  button.textContent = "✅ Copied!";
+  setTimeout(() => button.textContent = "📋 Copy", 2000);
+ });
+}
+</script></body></html>
