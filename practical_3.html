@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 3 - Key Exchange using Diffie-Hellman</title>
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#172033;--accent:#2563eb;--muted:#64748b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Arial,sans-serif}
+header{background:#10213d;color:white;padding:24px max(20px,calc((100% - 1050px)/2))}
+header h1{margin:0;font-size:clamp(22px,4vw,32px)}header p{margin:6px 0 0;color:#cbd5e1}
+main{max-width:1050px;margin:24px auto;padding:0 16px 40px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+button,.home{border:0;border-radius:9px;padding:11px 16px;background:var(--accent);color:white;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.home{background:#334155}.panel{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 4px 18px #0f172a0d;margin-bottom:20px}
+h2{margin-top:0}textarea{width:100%;min-height:220px;resize:vertical;padding:14px;border:1px solid #cbd5e1;border-radius:10px;font:14px/1.5 Consolas,monospace;white-space:pre-wrap}
+figure{margin:0 0 22px;background:white;padding:12px;border:1px solid #dbe3ee;border-radius:12px}figcaption{font-size:13px;color:var(--muted);margin-bottom:8px}figure img{width:100%;height:auto;display:block;border-radius:6px}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
+</style></head><body>
+<header><h1>Practical 3: Key Exchange using Diffie-Hellman</h1><p>Information &amp; Network Security • TYBSc CS • 2025–26</p></header>
+<main><div class="actions"><a class="home" href="index.html">← Back to Home</a><button onclick="copyText()">Copy Text</button></div>
+<section class="panel"><h2>Extracted Text</h2><p>Text extracted from the original PDF pages. The original page images are included below to preserve formatting, code and output screenshots.</p>
+<textarea id="practicalText" readonly>--- PDF Page 9 ---
+INS PRACTICAL 2025-26 
+ 
+Name: Rudra Dubey 
+                  Roll no: 06 
+Class: TYCS 
+ 
+PRATICAL-3 
+Q. Key Exchange using Diffie-Hellman. 
+def prime_checker(p): 
+    if p&lt;1: 
+        return -1 
+    elif p&gt;1: 
+        if p==2: 
+            return 1 
+        for i in range(2,p): 
+            if p%i==0: 
+                return -1 
+            return 1 
+def primitive_check(g,p,L): 
+    for i in range(1,p): 
+        L.append(pow(g,i)%p) 
+    for i in range(1,p): 
+        if L.count(i)&gt;1: 
+            L.clear() 
+            return -1 
+        return 1 
+l=[] 
+while 1: 
+    P=int(input(&quot;Enter P:&quot;)) 
+    if prime_checker(P)==-1: 
+        print(&quot;Number is not prime, please enter again!&quot;) 
+        continue 
+    break 
+while 1: 
+    G=int(input(f&quot;Enter primitive root of {P}:&quot;)) 
+    if primitive_check(G,P,l)==-1: 
+        print(&quot;Number is not primitive root of {P},please try again&quot;) 
+        continue 
+    break 
+x1,x2=int(input(&quot;Enter the private key of user 1:&quot;)),int(input(&quot;Enter the private key of user 2:&quot;)) 
+while 1: 
+    if x1&gt;=P or x2&gt;=P: 
+        print(f&quot;Private key of both the user should be less than {P}!&quot;) 
+        continue 
+    break 
+y1,y2=pow(G,x1)%P,pow(G,x2)%P 
+k1,k2=pow(y2,x1)%P,pow(y1,x2)%P 
+print(f&quot;\n Secret key for user 1 is {k1}\nSecret key for user 2 is {k2}\n&quot;) 
+if k1==k2: 
+    print(&quot;key have been exchange successfully&quot;) 
+else: 
+    print(&quot;key have not been exchange successfully&quot;)
+
+--- PDF Page 10 ---
+INS PRACTICAL 2025-26 
+ 
+Name: Rudra Dubey 
+                  Roll no: 06 
+Class: TYCS 
+ 
+OUTPUT:</textarea></section>
+<section class="panel"><h2>Original Practical Pages</h2><figure><figcaption>Original PDF page 9</figcaption><img src="images/page_09.jpg" alt="Original PDF page 9"></figure>
+<figure><figcaption>Original PDF page 10</figcaption><img src="images/page_10.jpg" alt="Original PDF page 10"></figure></section>
+<footer>INS Practical File • Original content and page screenshots preserved</footer></main>
+<script>function copyText(){const el=document.getElementById('practicalText');el.select();el.setSelectionRange(0,el.value.length);navigator.clipboard?.writeText(el.value).then(()=>alert('Text copied!')).catch(()=>{document.execCommand('copy');alert('Text copied!')});}</script>
+</body></html>
